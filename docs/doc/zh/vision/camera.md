@@ -5,6 +5,10 @@ update:
     author: neucrack
     version: 1.0.0
     content: 初版文档
+  - date: 2024-08-21
+    author: ywj
+    version: 1.0.1
+    content: 修正文档部分bug    
 ---
 
 
@@ -94,7 +98,7 @@ cam = camera.Camera(640, 480, fps=80)	        # 设置帧率为80帧
 对于画面存在鱼眼等畸变的情况，可以使用`Image`对象下的`lens_corr`函数对图片进行畸变矫正。一般情况只需要调大和调小`strength`的值来将画面调整到合适效果即可。
 
 ```python
-from maix import camera, display
+from maix import camera, display,app,time
 
 cam = camera.Camera(320, 240)
 disp = display.Display()
@@ -102,7 +106,8 @@ while not app.need_exit():
     t = time.ticks_ms()
     img = cam.read() 
     img = img.lens_corr(strength=1.5)	# 调整strength的值直到画面不再畸变
-    disp = display.Display()
+    disp.show(img)
+
 ```
 
 TODO：支持硬件畸变矫正
